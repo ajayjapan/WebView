@@ -11,7 +11,8 @@
 
 @implementation WebViewController
 
-@synthesize urlString;
+@synthesize initialURL = _initialURL;
+@synthesize showCancelButton;
 
 #pragma mark -
 #pragma mark Application Lifecycle
@@ -33,11 +34,15 @@
 	theWebView.scalesPageToFit = YES;
 	theWebView.delegate = self;
 	
-	NSURL *url = [NSURL URLWithString:urlString];
-	NSURLRequest *req = [NSURLRequest requestWithURL:url];
+	NSURLRequest *req = [NSURLRequest requestWithURL:_initialURL];
 	[theWebView loadRequest:req];
 	
 	[self.view addSubview: theWebView];
+}
+
+- (void)dismiss:(id)sender {
+    
+    [self.navigationController dismissModalViewControllerAnimated:YES];
 }
 
 // Implement viewDidLoad to do additional setup after loading the view, typically from a nib.
@@ -49,6 +54,10 @@
     whirl.center = self.view.center;
     
     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView: whirl];
+    
+    if (showCancelButton) {
+        self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemCancel target:self action:@selector(dismiss:)];
+    }
     
 	[self.navigationController setToolbarHidden:NO animated:YES];
 	
@@ -185,7 +194,7 @@
 	[theWebView release];
 	theWebView = nil;
     
-	[urlString release];
+	[_initialURL release];
 	
 	[super dealloc];
 }

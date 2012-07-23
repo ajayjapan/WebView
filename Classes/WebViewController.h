@@ -12,13 +12,13 @@
 @interface WebViewController : UIViewController <UIWebViewDelegate, UIActionSheetDelegate> {
 
 	UIWebView	*theWebView;
-	NSString	*urlString;
     UIActivityIndicatorView  *whirl;
 
 }
 
 -(void) updateToolbar;
 
-@property (nonatomic, retain) NSString *urlString;
+@property (nonatomic, retain) NSURL *initialURL;
+@property (nonatomic, assign) BOOL showCancelButton;
 
 @end
