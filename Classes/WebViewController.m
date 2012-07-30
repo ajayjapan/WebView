@@ -8,7 +8,6 @@
 
 #import "WebViewController.h"
 
-
 @implementation WebViewController
 
 @synthesize initialURL = _initialURL;
@@ -101,12 +100,6 @@
 	
     [self.navigationController setToolbarHidden:YES animated:YES];
 	
-}
-
-// Override to allow orientations other than the default portrait orientation.
-- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
-    // Return YES for supported orientations.
-    return (interfaceOrientation == UIInterfaceOrientationPortrait | UIInterfaceOrientationLandscapeLeft);
 }
 
 #pragma mark UIWebView delegate methods
