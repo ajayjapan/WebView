@@ -20,5 +20,7 @@
 
 @property (nonatomic, retain) NSURL *initialURL;
 @property (nonatomic, assign) BOOL showCancelButton;
+@property (nonatomic, assign) BOOL showOpenButton;
+@property (nonatomic, assign) BOOL showRefreshButton;
 
 @end

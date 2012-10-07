@@ -12,6 +12,8 @@
 
 @synthesize initialURL = _initialURL;
 @synthesize showCancelButton;
+@synthesize showOpenButton;
+@synthesize showRefreshButton;
 
 #pragma mark -
 #pragma mark Application Lifecycle
@@ -81,7 +83,18 @@
 	UIBarButtonItem *openButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAction target:self action:@selector(shareAction)];
     UIBarButtonItem *spacing       = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:nil action:nil];
     
-    NSArray *contents = [[NSArray alloc] initWithObjects:backButton, spacing, forwardButton, spacing, refreshButton, spacing, openButton, nil];
+    NSMutableArray *contents = [[NSMutableArray alloc] initWithObjects:backButton, spacing, forwardButton, nil];
+
+    if (showRefreshButton) {
+        [contents addObject:spacing];
+        [contents addObject:refreshButton];
+    }
+    
+    if (showOpenButton) {
+        [contents addObject:spacing];
+        [contents addObject:openButton];
+    }
+
     
     [self setToolbarItems:contents animated:NO];
         
