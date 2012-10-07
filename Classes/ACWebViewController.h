@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 
 
-@interface WebViewController : UIViewController <UIWebViewDelegate, UIActionSheetDelegate> {
+@interface ACWebViewController : UIViewController <UIWebViewDelegate, UIActionSheetDelegate> {
 
 	UIWebView	*theWebView;
     UIActivityIndicatorView  *whirl;

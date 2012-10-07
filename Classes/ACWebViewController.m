@@ -6,9 +6,9 @@
 //  Copyright 2011 __MyCompanyName__. All rights reserved.
 //
 
-#import "WebViewController.h"
+#import "ACWebViewController.h"
 
-@implementation WebViewController
+@implementation ACWebViewController
 
 @synthesize initialURL = _initialURL;
 @synthesize showCancelButton;
@@ -21,7 +21,6 @@
 	UIView *contentView = [[UIView alloc] initWithFrame:[[UIScreen mainScreen] applicationFrame]];	
 	contentView.autoresizesSubviews = YES;
 	self.view = contentView;	
-	[contentView release];
 	
     //set the web frame size
     CGRect webFrame = [[UIScreen mainScreen] applicationFrame];
@@ -83,16 +82,9 @@
     UIBarButtonItem *spacing       = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:nil action:nil];
     
     NSArray *contents = [[NSArray alloc] initWithObjects:backButton, spacing, forwardButton, spacing, refreshButton, spacing, openButton, nil];
-    [backButton release];
-    [forwardButton release];
-    [refreshButton release];
-    [openButton release];
-    [spacing release];
     
     [self setToolbarItems:contents animated:NO];
-    
-    [contents release];
-    
+        
 }
 
 - (void)viewWillDisappear:(BOOL)animated {
@@ -145,7 +137,6 @@
 										otherButtonTitles:@"Open in Safari", nil];
 	
 	[actionSheet showInView: self.view];
-	[actionSheet release];
 	
 }
 
@@ -169,36 +160,19 @@
         [theWebView stopLoading];
     
     theWebView.delegate = nil;
-    [theWebView release];
     theWebView = nil;
 }
 
 - (void)dealloc
 {
-    
-    [whirl release];
-
     //make sure that it has stopped loading before deallocating
     if (theWebView.loading)
         [theWebView stopLoading];
     
     //deallocate web view
 	theWebView.delegate = nil;
-	[theWebView release];
 	theWebView = nil;
     
-	[_initialURL release];
-	
-	[super dealloc];
-}
-
-- (oneway void)release
-{
-    if (![NSThread isMainThread]) {
-        [self performSelectorOnMainThread:@selector(release) withObject:nil waitUntilDone:NO];
-    } else {
-        [super release];
-    }
 }
 
 @end
