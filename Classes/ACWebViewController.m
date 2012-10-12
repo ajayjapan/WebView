@@ -14,6 +14,7 @@
 @synthesize showCancelButton;
 @synthesize showOpenButton;
 @synthesize showRefreshButton;
+@synthesize hideToolbar;
 
 #pragma mark -
 #pragma mark Application Lifecycle
@@ -59,7 +60,7 @@
         self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemCancel target:self action:@selector(dismiss:)];
     }
     
-	[self.navigationController setToolbarHidden:NO animated:YES];
+	[self.navigationController setToolbarHidden:hideToolbar animated:YES];
 	
     [self updateToolbar];
 
