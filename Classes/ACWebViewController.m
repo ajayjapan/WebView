@@ -43,7 +43,7 @@
 
 - (void)dismiss:(id)sender {
     
-    [self.navigationController dismissModalViewControllerAnimated:YES];
+    [self.navigationController dismissViewControllerAnimated:YES completion:nil];
 }
 
 // Implement viewDidLoad to do additional setup after loading the view, typically from a nib.
@@ -132,7 +132,7 @@
     [self updateToolbar];
     [whirl stopAnimating];
     
-    //handle error    
+    //handle error
 }
 
 #pragma mark -
