@@ -15,6 +15,8 @@
 @synthesize showOpenButton;
 @synthesize showRefreshButton;
 @synthesize hideToolbar;
+@synthesize hideNavbar;
+@synthesize showWebViewAfterFirstLoadComplete;
 
 #pragma mark -
 #pragma mark Application Lifecycle
@@ -38,7 +40,9 @@
 	NSURLRequest *req = [NSURLRequest requestWithURL:_initialURL];
 	[theWebView loadRequest:req];
 	
-	[self.view addSubview: theWebView];
+    if (!showWebViewAfterFirstLoadComplete) {
+        [self.view addSubview: theWebView];
+    }
 }
 
 - (void)dismiss:(id)sender {
@@ -61,6 +65,7 @@
     }
     
 	[self.navigationController setToolbarHidden:hideToolbar animated:YES];
+	[self.navigationController setNavigationBarHidden:hideNavbar animated:YES];
 	
     [self updateToolbar];
 
@@ -123,6 +128,12 @@
 
 - (void)webViewDidFinishLoad:(UIWebView *)webView {
     NSLog(@"%@",webView.request.URL.absoluteString);
+    
+    if (showWebViewAfterFirstLoadComplete) {
+        [self.view addSubview: theWebView];
+        showWebViewAfterFirstLoadComplete = NO;
+    }
+    
     [self updateToolbar];
     self.title = [webView stringByEvaluatingJavaScriptFromString:@"document.title"]; 
     [whirl stopAnimating];
