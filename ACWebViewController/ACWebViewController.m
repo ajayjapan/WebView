@@ -17,6 +17,7 @@
 @synthesize hideToolbar;
 @synthesize hideNavbar;
 @synthesize showWebViewAfterFirstLoadComplete;
+@synthesize hideTitle;
 
 #pragma mark -
 #pragma mark Application Lifecycle
@@ -135,7 +136,10 @@
     }
     
     [self updateToolbar];
-    self.title = [webView stringByEvaluatingJavaScriptFromString:@"document.title"]; 
+    if (!self.hideTitle) {
+        self.title = [webView stringByEvaluatingJavaScriptFromString:@"document.title"];
+    }
+    
     [whirl stopAnimating];
 }
 

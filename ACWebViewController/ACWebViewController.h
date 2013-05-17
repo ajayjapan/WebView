@@ -25,5 +25,6 @@
 @property (nonatomic, assign) BOOL showRefreshButton;
 @property (nonatomic, assign) BOOL hideToolbar;
 @property (nonatomic, assign) BOOL hideNavbar;
+@property (nonatomic, assign) BOOL hideTitle;
 
 @end
