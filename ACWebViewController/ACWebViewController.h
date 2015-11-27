@@ -10,14 +10,12 @@
 
 
 @interface ACWebViewController : UIViewController <UIWebViewDelegate, UIActionSheetDelegate> {
-
 	UIWebView	*theWebView;
-    UIActivityIndicatorView  *whirl;
-
 }
 
 -(void) updateToolbar;
 
+@property (nonatomic, strong) UIActivityIndicatorView  *whirl;
 @property (nonatomic, retain) NSURL *initialURL;
 @property (nonatomic, assign) BOOL showWebViewAfterFirstLoadComplete;
 @property (nonatomic, assign) BOOL showCancelButton;

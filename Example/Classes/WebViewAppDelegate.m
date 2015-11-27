@@ -7,7 +7,7 @@
 //
 
 #import "WebViewAppDelegate.h"
-#import "WebViewController.h"
+#import "ACWebViewController.h"
 
 @implementation WebViewAppDelegate
 
@@ -22,8 +22,8 @@
     // Override point for customization after application launch.
     
 	navigationController = [[UINavigationController alloc] init];
-	WebViewController *webViewController = [[WebViewController alloc] init];
-	webViewController.urlString = @"http://www.google.com/";
+	ACWebViewController *webViewController = [[ACWebViewController alloc] init];
+	webViewController.initialURL = [NSURL URLWithString:@"http://www.google.com/"];
 	
 	[navigationController pushViewController:webViewController animated:NO];
 	[webViewController release];

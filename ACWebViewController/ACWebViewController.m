@@ -10,6 +10,7 @@
 
 @implementation ACWebViewController
 
+@synthesize whirl = _whirl;
 @synthesize initialURL = _initialURL;
 @synthesize showCancelButton;
 @synthesize showOpenButton;
@@ -46,6 +47,14 @@
     }
 }
 
+- (UIActivityIndicatorView *)whirl {
+  if (_whirl == nil) {
+    _whirl = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhite];
+    _whirl.frame = CGRectMake(0.0, 0.0, 20.0, 20.0);
+  }
+  return _whirl;
+}
+
 - (void)dismiss:(id)sender {
     
     [self.navigationController dismissViewControllerAnimated:YES completion:nil];
@@ -55,11 +64,9 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
 
-    whirl = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhite];
-	whirl.frame = CGRectMake(0.0, 0.0, 20.0, 20.0);
-    whirl.center = self.view.center;
-    
-    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView: whirl];
+    self.whirl.center = self.view.center;
+  
+    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:self.whirl];
     
     if (showCancelButton) {
         self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemCancel target:self action:@selector(dismiss:)];
