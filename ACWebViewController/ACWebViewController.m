@@ -129,7 +129,7 @@
 }
 
 - (void) webViewDidStartLoad: (UIWebView * ) webView {    
-    [whirl startAnimating]; 
+    [self.whirl startAnimating];
     [self updateToolbar];
     
 }
@@ -147,12 +147,12 @@
         self.title = [webView stringByEvaluatingJavaScriptFromString:@"document.title"];
     }
     
-    [whirl stopAnimating];
+    [self.whirl stopAnimating];
 }
 
 - (void)webView:(UIWebView *)webView didFailLoadWithError:(NSError *)error {
     [self updateToolbar];
-    [whirl stopAnimating];
+    [self.whirl stopAnimating];
     
     //handle error
 }
